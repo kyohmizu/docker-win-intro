@@ -22,14 +22,14 @@ class: center, middle, inverse
 ---
 ### 今日話すこと
 
-- コンテナ基礎
+- コンテナの基本
 - Windowsコンテナ
   - 概要
   - 実行環境
 
 ---
 class: center, middle, blue
-## コンテナ基礎
+## コンテナの基本
 
 ---
 ### コンテナとは
@@ -64,7 +64,7 @@ class: center, middle, blue
 - 軽量(オーバーヘッドが少ない)
 - 起動が高速
 - 仮想マシンに比べ分離レベルは低い
-  - セキュリティ面で注意
+  - セキュリティリスクに注意
 
 ---
 ### コンテナを支える技術
@@ -74,6 +74,11 @@ class: center, middle, blue
 
 ---
 ### Windowsでのコンテナ利用
+
+- Docker Desktop
+  - Hyper-V
+- Docker Toolbox
+  - 
 
 ---
 class: center, middle, blue
