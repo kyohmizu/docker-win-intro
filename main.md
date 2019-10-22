@@ -25,7 +25,7 @@ class: center, middle, inverse
 - コンテナの基本
 - Windowsコンテナ
   - 概要
-  - 実行環境
+  - デモ（時間があれば）
 
 ---
 class: center, middle, blue
@@ -69,16 +69,26 @@ class: center, middle, blue
 ---
 ### コンテナを支える技術
 
+.half[
 - namespace
+]
+
 - cgroups
 
 ---
 ### Windowsでのコンテナ利用
 
-- Docker Desktop
-  - Hyper-V
+.half[
+- Docker Desktop for Windows
+  - 仮想マシン上でコンテナ実行を実行
+  - Hyper-Vを使用  
+  <u><https://docs.docker.com/docker-for-windows/></u>
+]
+
 - Docker Toolbox
-  - 
+  - レガシーなデスクトッププログラム
+  - Oracle VM VirtualBoxを使用  
+  <u><https://docs.docker.com/toolbox/></u>
 
 ---
 class: center, middle, blue
@@ -87,16 +97,31 @@ class: center, middle, blue
 ---
 ### Windowsコンテナ
 
+- Docker Desktop for Windowsのみ実行可能
+
+---
+### コンテナタイプ
+
+---
+### ベースイメージ
+
 ---
 ### 実行環境
 
-
+---
+class: center, middle, blue
+## デモ<br/>（時間があれば）
 
 ---
 ### 参考
 
+.zoom1[
 Docker実践ガイド第2版  
 <u><https://book.impress.co.jp/books/1118101052></u>
+
+Microsoftドキュメント  
+<u><https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/></u>
+]
 
 ---
 class: center, middle, blue
@@ -106,5 +131,5 @@ class: center, middle, blue
 <u><https://cloudnativedays.jp/cndk2019/></u>
 
 ---
-class: center, middle, black
+class: center, middle, blue
 ### ありがとうございました！
