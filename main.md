@@ -25,6 +25,7 @@ class: center, middle, inverse
 - コンテナの基本
 - Windowsコンテナ
   - 概要
+  - 実行環境
   - デモ（時間があれば）
 
 ---
@@ -64,7 +65,7 @@ class: center, middle, blue
 
 - 軽量(オーバーヘッドが少ない)
 - 起動が高速
-- 仮想マシンに比べ分離レベルは低い
+- 分離レベルはあまり高くない
   - セキュリティリスクに注意  
     → Rootlessコンテナの利用  
     → gVisorによるサンドボックス化
@@ -92,7 +93,7 @@ class: center, middle, blue
   <u><https://docs.docker.com/docker-for-windows/></u>
 ]
 
-- Docker Toolbox
+- Docker Toolbox（非推奨）
   - レガシーなデスクトッププログラム
   - Oracle VM VirtualBoxを使用  
   <u><https://docs.docker.com/toolbox/></u>
@@ -124,31 +125,37 @@ class: center, middle, blue
 ---
 ### 分離モード
 
-.half[
-- プロセス分離（Process Isolation）
-  - ホストOS上のプロセスとしてコンテナを実行  
-    → ホストOSとカーネルを共有
-  - 開発、テスト用
+.half-2[
+- 2つの分離モード
+  - プロセス分離（Process Isolation）
+  - Hyper-V分離（Hyper-V isolation）
+- 使用するイメージは共通
+  - 実行時のオプションで選択する
 ]
 
-- Hyper-V分離（Hyper-V isolation）
-  - Hyper-Vの仮想マシン上でコンテナを実行  
-    → ホストOSとカーネルを共有しない
-
----
-
-<img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-process.png" width=94%>
-
-<img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-hyperv.png" width=94%>
-
-.zoom0[
-  プロセス分離（上）とHyper-V分離（下）  
+.zoom1[
   <u><https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/manage-containers/hyperv-container></u>
 ]
 
-.zoom0[
+---
+### プロセス分離
 
-]
+- ホストOS上のプロセスとしてコンテナを実行  
+  - ホストOSとカーネルを共有
+- 起動が早く、オーバーヘッドが少ない
+- 開発、テスト用
+
+<center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-process.png" width=100%></center>
+
+---
+### Hyper-V分離
+
+- Hyper-Vの仮想マシン上でコンテナを実行  
+  - ホストOSとカーネルを共有しない
+- 分離レベルが高い
+- 本番環境に適している
+
+<center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-hyperv.png" width=100%><center>
 
 ---
 ### コンテナホストの要件
