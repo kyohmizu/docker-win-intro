@@ -23,10 +23,8 @@ class: center, middle, inverse
 ### 今日話すこと
 
 - コンテナの基本
-- Windowsコンテナ
-  - 概要
-  - 実行環境
-  - デモ（時間があれば）
+- Windowsコンテナ概要
+- デモ（時間があれば）
 
 ---
 class: center, middle, blue
@@ -93,8 +91,8 @@ class: center, middle, blue
   <u><https://docs.docker.com/docker-for-windows/></u>
 ]
 
-- Docker Toolbox（非推奨）
-  - レガシーなデスクトッププログラム
+- Docker Toolbox(非推奨)
+  - レガシーなDockerデスクトッププログラム
   - Oracle VM VirtualBoxを使用  
   <u><https://docs.docker.com/toolbox/></u>
 
@@ -105,57 +103,26 @@ class: center, middle, blue
 ---
 ### Windowsコンテナ
 
-- コンテナでWindows Serverを実行
-- Docker Desktop for Windowsでのみ実行可能
+- Windows Serverを実行するコンテナ
+- Docker Desktop for Windowsで実行
+  - Docker Toolboxでは実行不可
+- 2つの分離モード
+  - プロセス分離(Process Isolation)
+  - Hyper-V分離(Hyper-V Isolation)
 
 ---
 ### ベースイメージ
 
 - Windows Server Core
-  - 従来の .NET framework アプリケーション用
+  - 従来の .NET frameworkアプリケーション用
 - Nano Server
-  - .NET Core アプリケーション用
+  - .NET Coreアプリケーション用
 - Windows
-  - Windows API のフルセット
+  - Windows APIのフルセット
 - Windows IoT Core
-  - IoT アプリケーション用
+  - IoTアプリケーション用
 
 ※イメージは Docker Hub から取得可能
-
----
-### 分離モード
-
-.half-2[
-- 2つの分離モード
-  - プロセス分離（Process Isolation）
-  - Hyper-V分離（Hyper-V isolation）
-- 使用するイメージは共通
-  - 実行時のオプションで選択する
-]
-
-.zoom1[
-  <u><https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/manage-containers/hyperv-container></u>
-]
-
----
-### プロセス分離
-
-- ホストOS上のプロセスとしてコンテナを実行  
-  - ホストOSとカーネルを共有
-- 起動が早く、オーバーヘッドが少ない
-- 開発、テスト用
-
-<center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-process.png" width=100%></center>
-
----
-### Hyper-V分離
-
-- Hyper-Vの仮想マシン上でコンテナを実行  
-  - ホストOSとカーネルを共有しない
-- 分離レベルが高い
-- 本番環境に適している
-
-<center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-hyperv.png" width=100%><center>
 
 ---
 ### コンテナホストの要件
@@ -164,8 +131,9 @@ class: center, middle, blue
 .zoom2[
 - Windows Server 2016、Windows Server 2019、  
   Windows 10 Professional または Enterprise
-- Hyper-Vの機能が有効になっている（Hyper-V分離）
-- OSが「C:」にインストールされいている（プロセス分離）
+- コンテナ機能が有効になっている
+- Hyper-Vの機能が有効になっている(Hyper-V分離)
+- OSが「C:」にインストールされいている(プロセス分離)
 - BIOSで仮想化が有効になっている
   - ホストOSがHyper-V仮想マシンの場合、nested virtualization の有効化が必要
 ]
@@ -176,21 +144,76 @@ class: center, middle, blue
 ]
 
 ---
-### コンテナOSバージョンの互換性
+### 分離モード
 
 .half-2[
-- プロセス分離
-  - ホストOSと同じバージョンのみ実行可能
-- Hyper-V分離
-  - ホストOSと同じか、古いバージョンのみ実行可能
+.zoom2[
+- 2つの分離モード
+  - プロセス分離(Process Isolation)
+  - Hyper-V分離(Hyper-V Isolation)
+- 使用するイメージは共通
+  - 実行時のオプション(--isolation)で選択する
+- 既定値(オプションなしで実行)
+  - Windows Serverではプロセス分離
+  - Windows 10ではHyper-V分離
+]
 ]
 
 .zoom1[
-  <u><https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/deploy-containers/version-compatibility></u>
+  <u><https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/manage-containers/hyperv-container></u>
 ]
 
 ---
-### Windowsコンテナの実行
+### プロセス分離
+
+.zoom2[
+- ホストOS上のプロセスとしてコンテナを実行  
+  - ホストOSとカーネルを共有
+  - ホストOSと同じバージョンのみ実行可能
+- 起動が早く、オーバーヘッドが少ない
+- 開発、テスト用
+]
+
+<center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-process.png" width=90%></center>
+
+---
+### プロセス分離
+
+Windowsのコンテナ機能を使用
+
+- ホストの実行プロセス
+  - CExecSvc.exe(コンテナ実行エージェント)
+  - conhost.exe(コンソールのホスト)
+- 1コンテナ当たりCExecSvc、conhostが1つずつ起動
+- ホストからコンテナ内のプロセスを確認できる
+
+---
+### Hyper-V分離
+
+.zoom2[
+- Hyper-Vの仮想マシン上でコンテナを実行  
+  - ホストOSとカーネルを共有しない
+  - ホストOSと同じか、古いバージョンのみ実行可能
+- 分離レベルが高い
+- 本番環境に適している
+]
+
+<center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-hyperv.png" width=90%><center>
+
+---
+### Hyper-V分離
+
+Hyper-Vの機能を使用
+
+- ホストの実行プロセス
+  - vmwp.exe(仮想マシンワーカー)
+  - vmmem.exe(メモリ、CPUをコンテナ用に仮想化)
+- 1コンテナ当たりvmwp、vmmemが1つずつ起動
+- サポート用に1つのvmwp、2つのvmmemが常駐
+- Hyper-Vマネージャーでは確認できない
+
+---
+### コンテナの実行
 
 - プロセス分離
 
@@ -216,6 +239,9 @@ class: center, middle, blue
 .zoom1[
 Microsoftドキュメント（翻訳に難あり）  
 <u><https://docs.microsoft.com/ja-jp/virtualization/windowscontainers/></u>
+
+DockerHub - Docker Desktop for Windows  
+<u><https://hub.docker.com/editions/community/docker-ce-desktop-windows></u>
 
 ＠ITの記事  
 <u><https://www.atmarkit.co.jp/ait/articles/1902/07/news024.html></u>
