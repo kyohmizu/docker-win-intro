@@ -27,17 +27,23 @@ class: center, middle, inverse
 - デモ（時間があれば）
 
 ---
+### 今日のゴール
+
+- Windowsコンテナを何となく理解する
+- Windowsコンテナを実行できるようになる
+
+---
 class: center, middle, blue
 ## コンテナの基本
 
 ---
-### コンテナとは
+### コンテナ？
 
 - 仮想化技術の一つ(コンテナ型仮想化)  
   ⇔ 仮想マシン(VM)
-- 1つのホスト上に複数の分離空間を実現
-  - 各コンテナをプロセスとして実行
-  - それぞれの分離空間では異なるOSを実行可能
+- 1つのホスト上に複数の分離空間(=コンテナ)を作成
+  - ホストのプロセスとして動作
+  - それぞれのコンテナでは異なるOSを実行可能
 - ホストOSのカーネルを共有
 - Dockerコンテナが主流
 
@@ -73,12 +79,12 @@ class: center, middle, blue
 
 .half[
 - namespace
-  - プロセスID、ユーザ等を分離
+  - プロセスID、ユーザ、ファイルシステム等を分離
   - コンテナからホストのプロセス、ユーザは見えない
 ]
 
 - cgroups
-  - CPU、メモリ等のリソースを分離
+  - CPU、メモリ等のマシンリソースを分離
   - リソースの使用量を制限
 
 ---
@@ -153,7 +159,7 @@ class: center, middle, blue
   - Hyper-V分離(Hyper-V Isolation)
 - 使用するイメージは共通
   - 実行時のオプション(--isolation)で選択する
-- 既定値(オプションなしで実行)
+- 既定値(オプションなしで実行した場合)
   - Windows Serverではプロセス分離
   - Windows 10ではHyper-V分離
 ]
@@ -185,7 +191,7 @@ Windowsのコンテナ機能を使用
   - CExecSvc.exe(コンテナ実行エージェント)
   - conhost.exe(コンソールのホスト)
 - 1コンテナ当たりCExecSvc、conhostが1つずつ起動
-- ホストからコンテナ内のプロセスを確認できる
+- ホストからコンテナ内の実行プロセスを確認できる
 
 ---
 ### Hyper-V分離
@@ -194,8 +200,8 @@ Windowsのコンテナ機能を使用
 - Hyper-Vの仮想マシン上でコンテナを実行  
   - ホストOSとカーネルを共有しない
   - ホストOSと同じか、古いバージョンのみ実行可能
+  - Hyper-Vマネージャーでは確認できない
 - 分離レベルが高い
-- 本番環境に適している
 ]
 
 <center><img src="https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/media/container-arch-hyperv.png" width=90%><center>
@@ -210,7 +216,7 @@ Hyper-Vの機能を使用
   - vmmem.exe(メモリ、CPUをコンテナ用に仮想化)
 - 1コンテナ当たりvmwp、vmmemが1つずつ起動
 - サポート用に1つのvmwp、2つのvmmemが常駐
-- Hyper-Vマネージャーでは確認できない
+- ホストからコンテナ内の実行プロセスを確認できない
 
 ---
 ### コンテナの実行
@@ -232,6 +238,15 @@ mcr.microsoft.com/windows/servercore:ltsc2019 cmd
 ---
 class: center, middle, blue
 ## デモ
+
+---
+### Azure VMでの利用
+
+---
+### ACIでの利用
+
+---
+### Kubernetesでの利用
 
 ---
 ### 参考
@@ -267,5 +282,5 @@ class: center, middle, blue
 ]
 
 ---
-class: center, middle, blue
-### ありがとうございました！
+class: center, middle, black
+### ありがとうございました
