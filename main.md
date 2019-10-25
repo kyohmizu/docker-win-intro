@@ -236,17 +236,66 @@ mcr.microsoft.com/windows/servercore:ltsc2019 cmd
 ```
 
 ---
-class: center, middle, blue
-## デモ
+### デモ
+
+<center><img src="demo.png" width=94%><center>
 
 ---
 ### Azure VMでの利用
 
+.half-3[
+.zoom2[
+- VMサイズはv3を指定する
+  - Nested Virtualizationを有効にするため
+]
+
+<center><img src="vm-size.png" width=100%><center>
+]
+
+.zoom0[
+<u><https://docs.microsoft.com/en-us/azure/virtual-machines/windows/nested-virtualization></u>  
+<u><https://azure.microsoft.com/de-de/blog/introducing-the-new-dv3-and-ev3-vm-sizes/></u>
+]
+
 ---
-### ACIでの利用
+### Azure Container Instanceでの利用
+
+<center><img src="aci.png" width=95%><center>
 
 ---
 ### Kubernetesでの利用
+
+.half-3[
+.zoom2[
+Windowsのノード上で、Windowsコンテナを利用可能
+]
+
+<center><img src="k8s.png" width=95%><center>
+]
+
+.zoom0[
+<u><https://kubernetes.io/docs/setup/production-environment/windows/intro-windows-in-kubernetes/></u>
+]
+
+---
+### Azure Kubernetes Serviceでの利用
+
+.half-3[
+.zoom2[
+コンソール(Azure Cloud Shellなど)を使用
+
+1. プレビューの拡張機能(aks-preview)をインストール
+2. AKSクラスタを作成
+   - Windows用に管理ユーザー名とパスワードを指定
+3. Windows Serverのノードプールを追加
+4. kubernetesリソースを作成
+   - nodeSelectorに "beta.kubernetes.io/os": windows を設定
+]
+]
+
+.zoom0[
+<u><https://docs.microsoft.com/en-us/azure/aks/windows-container-cli></u>
+]
 
 ---
 ### 参考
