@@ -315,20 +315,4 @@ Docker実践ガイド第2版
 
 ---
 class: center, middle, blue
-## 宣伝
-
----
-<center><img src="cndk.png" width=100%><center>
-
-<u><https://cloudnativedays.jp/cndk2019/></u>
-
----
-<center><img src="cndk-tweet.png" width=75%><center>
-
-.zoom1[
-<u><https://twitter.com/cloudnativedays/status/1186154959517044736></u>
-]
-
----
-class: center, middle, black
 ### ありがとうございました
