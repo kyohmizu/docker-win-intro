@@ -1,4 +1,6 @@
-class: center, middle, inverse
+background-image: url(https://raw.githubusercontent.com/kyohmizu/items-for-presentation/master/bg-06.jpg)
+background-size: cover
+class: center, middle, white
 ## Windowsコンテナ入門
 
 ---
@@ -33,7 +35,9 @@ class: center, middle, inverse
 - Windowsコンテナを実行できるようになる
 
 ---
-class: center, middle, blue
+background-image: url(https://raw.githubusercontent.com/kyohmizu/items-for-presentation/master/bg-06.jpg)
+background-size: cover
+class: center, middle, white
 ## コンテナの基本
 
 ---
@@ -103,7 +107,9 @@ class: center, middle, blue
   <u><https://docs.docker.com/toolbox/></u>
 
 ---
-class: center, middle, blue
+background-image: url(https://raw.githubusercontent.com/kyohmizu/items-for-presentation/master/bg-06.jpg)
+background-size: cover
+class: center, middle, white
 ## Windowsコンテナ
 
 ---
@@ -314,5 +320,7 @@ Docker実践ガイド第2版
 ]
 
 ---
-class: center, middle, blue
-### ありがとうございました
+background-image: url(https://raw.githubusercontent.com/kyohmizu/items-for-presentation/master/bg-06.jpg)
+background-size: cover
+class: center, middle, white
+## Thank you!
